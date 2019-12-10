@@ -4,7 +4,7 @@ import day5_1
 """
 """
 class Intcode(day5_1.Intcode):
-	def run(self, stdin):
+	def run(self, *arg):
 		# Create a copy of this so subsequent runs with different inputs are not using a mutated program state
 		opcodes = self.opcodes
 
@@ -13,6 +13,7 @@ class Intcode(day5_1.Intcode):
 		"""
 		instruction_pointer = 0
 		stdout = []
+		arg_index = 0
 		while (True):
 			instruction = opcodes[instruction_pointer]
 			instruction = str(instruction).rjust(5, '0')
@@ -46,7 +47,8 @@ class Intcode(day5_1.Intcode):
 			"""
 			if opcode == '03':
 				arg1 = opcodes[instruction_pointer + 1]
-				opcodes[arg1] = stdin
+				opcodes[arg1] = arg[arg_index]
+				arg_index += 1
 				instruction_pointer += 2
 	
 			"""
