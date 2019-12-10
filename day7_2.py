@@ -148,10 +148,7 @@ def amp_circuit_feedback_loop(opcodes, phase_settings):
 		try:
 			input_signal = amplifiers[i].run(input_signal)
 		except AmplifierControllerHalt as e:
-			if i != len(phase_settings) - 1:
-				continue
-			else:
-				break
+			break
 
 	return input_signal
 
